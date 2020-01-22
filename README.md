@@ -3,6 +3,38 @@
 `dhall-openshift` contains [Dhall][dhall-lang] bindings to [OpenShift][OpenShift],
 created with [dhall-kubernetes][dhall-kubernetes].
 
+## Example
+
+```dhall
+let OpenShift = ./package.dhall
+
+in  OpenShift.Route::{
+    , metadata = OpenShift.ObjectMeta::{ name = "frontend" }
+    , spec = OpenShift.RouteSpec::{
+      , host = "www.example.com"
+      , to = OpenShift.RouteTargetReference::{
+        , kind = "Service"
+        , name = "frontend"
+        , weight = 0
+        }
+      }
+    }
+```
+
+```yaml
+# dhall-to-yaml --omit-empty --file ./examples/route.dhall
+apiVersion: v1
+kind: Route
+metadata:
+  name: frontend
+spec:
+  host: www.example.com
+  to:
+    kind: Service
+    name: frontend
+    weight: 0
+```
+
 ## Update
 
 Download https://github.com/openshift/origin/blob/master/api/swagger-spec/openshift-openapi-spec.json
