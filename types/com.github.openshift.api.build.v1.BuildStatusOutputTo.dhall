@@ -1,0 +1,1 @@
+{ imageDigest : Optional Text }
