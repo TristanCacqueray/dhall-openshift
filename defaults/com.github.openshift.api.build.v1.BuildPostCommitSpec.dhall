@@ -1,1 +1,1 @@
-{ args = [] : List Text, command = [] : List Text, script = None Text }
+{ args = None (List Text), command = None (List Text), script = None Text }

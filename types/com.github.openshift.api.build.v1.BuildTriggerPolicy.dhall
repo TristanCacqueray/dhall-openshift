@@ -1,7 +1,8 @@
-{ bitbucket : ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
-, generic : ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
-, github : ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
-, gitlab : ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
-, imageChange : ./com.github.openshift.api.build.v1.ImageChangeTrigger.dhall
-, type : Text
+{ type : Text
+, bitbucket : Optional ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
+, generic : Optional ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
+, github : Optional ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
+, gitlab : Optional ./com.github.openshift.api.build.v1.WebHookTrigger.dhall
+, imageChange :
+    Optional ./com.github.openshift.api.build.v1.ImageChangeTrigger.dhall
 }

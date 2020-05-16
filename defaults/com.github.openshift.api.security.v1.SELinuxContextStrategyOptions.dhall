@@ -1,1 +1,3 @@
-{ seLinuxOptions = ./io.k8s.api.core.v1.SELinuxOptions.dhall, type = None Text }
+{ seLinuxOptions = None ./../types/io.k8s.api.core.v1.SELinuxOptions.dhall
+, type = None Text
+}

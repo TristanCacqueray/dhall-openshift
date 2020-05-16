@@ -1,5 +1,4 @@
-{ containerNames = [] : List Text
-, from = ./io.k8s.api.core.v1.ObjectReference.dhall
-, automatic = None Bool
+{ automatic = None Bool
+, containerNames = None (List Text)
 , lastTriggeredImage = None Text
 }

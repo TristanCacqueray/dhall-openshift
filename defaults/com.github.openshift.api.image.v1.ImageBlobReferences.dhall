@@ -1,1 +1,1 @@
-{ layers = [] : List Text, config = None Text, imageMissing = None Bool }
+{ config = None Text, imageMissing = None Bool, layers = None (List Text) }

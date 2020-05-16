@@ -1,6 +1,4 @@
-{ stages =
-    [] : List ./../types/com.github.openshift.api.build.v1.StageInfo.dhall
-, cancelled = None Bool
+{ cancelled = None Bool
 , completionTimestamp =
     None ./../types/io.k8s.apimachinery.pkg.apis.meta.v1.Time.dhall
 , config = None ./../types/io.k8s.api.core.v1.ObjectReference.dhall
@@ -11,6 +9,8 @@
     None ./../types/com.github.openshift.api.build.v1.BuildStatusOutput.dhall
 , outputDockerImageReference = None Text
 , reason = None Text
+, stages =
+    None (List ./../types/com.github.openshift.api.build.v1.StageInfo.dhall)
 , startTimestamp =
     None ./../types/io.k8s.apimachinery.pkg.apis.meta.v1.Time.dhall
 }

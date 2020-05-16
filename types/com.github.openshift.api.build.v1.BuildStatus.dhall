@@ -1,5 +1,4 @@
 { phase : Text
-, stages : List ./com.github.openshift.api.build.v1.StageInfo.dhall
 , cancelled : Optional Bool
 , completionTimestamp :
     Optional ./io.k8s.apimachinery.pkg.apis.meta.v1.Time.dhall
@@ -10,5 +9,6 @@
 , output : Optional ./com.github.openshift.api.build.v1.BuildStatusOutput.dhall
 , outputDockerImageReference : Optional Text
 , reason : Optional Text
+, stages : Optional (List ./com.github.openshift.api.build.v1.StageInfo.dhall)
 , startTimestamp : Optional ./io.k8s.apimachinery.pkg.apis.meta.v1.Time.dhall
 }
