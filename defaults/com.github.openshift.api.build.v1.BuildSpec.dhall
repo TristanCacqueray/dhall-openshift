@@ -1,9 +1,4 @@
-{ nodeSelector = [] : List { mapKey : Text, mapValue : Text }
-, strategy = ./com.github.openshift.api.build.v1.BuildStrategy.dhall
-, triggeredBy =
-    [] : List
-           ./../types/com.github.openshift.api.build.v1.BuildTriggerCause.dhall
-, completionDeadlineSeconds = None Natural
+{ completionDeadlineSeconds = None Natural
 , output = None ./../types/com.github.openshift.api.build.v1.BuildOutput.dhall
 , postCommit =
     None ./../types/com.github.openshift.api.build.v1.BuildPostCommitSpec.dhall

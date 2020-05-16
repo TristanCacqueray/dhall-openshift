@@ -1,1 +1,1 @@
-{ scopes = [] : List Text }
+{=}

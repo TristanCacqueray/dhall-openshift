@@ -1,4 +1,1 @@
-{ groups = [] : List Text
-, template = ./io.k8s.api.core.v1.PodTemplateSpec.dhall
-, user = None Text
-}
+{ groups = None (List Text), user = None Text }

@@ -1,19 +1,17 @@
 { apiVersion = "v1"
 , kind = "BuildRequest"
-, binary = ./com.github.openshift.api.build.v1.BinaryBuildSource.dhall
-, env = [] : List ./../types/io.k8s.api.core.v1.EnvVar.dhall
-, metadata = ./io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta.dhall
-, sourceStrategyOptions =
-    ./com.github.openshift.api.build.v1.SourceStrategyOptions.dhall
-, triggeredBy =
-    [] : List
-           ./../types/com.github.openshift.api.build.v1.BuildTriggerCause.dhall
+, binary =
+    None ./../types/com.github.openshift.api.build.v1.BinaryBuildSource.dhall
 , dockerStrategyOptions =
     None
       ./../types/com.github.openshift.api.build.v1.DockerStrategyOptions.dhall
+, env = None (List ./../types/io.k8s.api.core.v1.EnvVar.dhall)
 , from = None ./../types/io.k8s.api.core.v1.ObjectReference.dhall
 , lastVersion = None Natural
 , revision =
     None ./../types/com.github.openshift.api.build.v1.SourceRevision.dhall
+, sourceStrategyOptions =
+    None
+      ./../types/com.github.openshift.api.build.v1.SourceStrategyOptions.dhall
 , triggeredByImage = None ./../types/io.k8s.api.core.v1.ObjectReference.dhall
 }

@@ -1,3 +1,3 @@
-{ seLinuxOptions : ./io.k8s.api.core.v1.SELinuxOptions.dhall
+{ seLinuxOptions : Optional ./io.k8s.api.core.v1.SELinuxOptions.dhall
 , type : Optional Text
 }

@@ -1,1 +1,4 @@
-{ args : List Text, command : List Text, script : Optional Text }
+{ args : Optional (List Text)
+, command : Optional (List Text)
+, script : Optional Text
+}

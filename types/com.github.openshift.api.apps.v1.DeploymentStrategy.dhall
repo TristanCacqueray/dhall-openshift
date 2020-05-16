@@ -1,13 +1,15 @@
-{ annotations : List { mapKey : Text, mapValue : Text }
-, labels : List { mapKey : Text, mapValue : Text }
-, recreateParams :
-    ./com.github.openshift.api.apps.v1.RecreateDeploymentStrategyParams.dhall
-, rollingParams :
-    ./com.github.openshift.api.apps.v1.RollingDeploymentStrategyParams.dhall
-, activeDeadlineSeconds : Optional Natural
+{ activeDeadlineSeconds : Optional Natural
+, annotations : Optional (List { mapKey : Text, mapValue : Text })
 , customParams :
     Optional
       ./com.github.openshift.api.apps.v1.CustomDeploymentStrategyParams.dhall
+, labels : Optional (List { mapKey : Text, mapValue : Text })
+, recreateParams :
+    Optional
+      ./com.github.openshift.api.apps.v1.RecreateDeploymentStrategyParams.dhall
 , resources : Optional ./io.k8s.api.core.v1.ResourceRequirements.dhall
+, rollingParams :
+    Optional
+      ./com.github.openshift.api.apps.v1.RollingDeploymentStrategyParams.dhall
 , type : Optional Text
 }
