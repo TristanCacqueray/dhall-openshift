@@ -95,7 +95,13 @@ Building executable 'dhall-kubernetes-generator' for dhall-kubernetes-generator-
 Then generate the files by running:
 
 ```shell
-./dist/build/dhall-kubernetes-generator/dhall-kubernetes-generator openshift-openapi-spec.json
+$ ./dist/build/dhall-kubernetes-generator/dhall-kubernetes-generator openshift-openapi-spec.json
+```
+
+And freeze import hash:
+
+```shell
+$ for i in *.dhall; do dhall freeze --inplace $i --all; done
 ```
 
 [dhall-lang]: https://dhall-lang.org
