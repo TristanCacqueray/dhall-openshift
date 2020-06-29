@@ -1,4 +1,4 @@
-{ as = None (List Text)
+{ `as` = None (List Text)
 , paths =
     None
       (List ./../types/com.github.openshift.api.build.v1.ImageSourcePath.dhall)
