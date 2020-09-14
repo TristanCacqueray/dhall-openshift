@@ -37,65 +37,68 @@ spec:
 
 ## Update
 
-Download https://github.com/openshift/origin/blob/master/api/swagger-spec/openshift-openapi-spec.json
-Setup `dhall-kubernetes-generator` by running from https://github.com/dhall-lang/dhall-kubernetes/tree/master/dhall-kubernetes-generator
-
-Patch the generator with this fix:
+Install the (WIP) dhall-openapi package:
 
 ```shell
+$ git clone https://github.com/dhall-lang/dhall-haskell
+$ pushd dhall-haskell
 $ git am -3 <<< EOF
-From 7ad54ac06bb4fbaa2e79b5bd1ef30a3eeeb3f388 Mon Sep 17 00:00:00 2001
+From 269fb1a50e6a550ce5d61f8a29f71e4d26176a37 Mon Sep 17 00:00:00 2001
 From: Tristan Cacqueray <tdecacqu@redhat.com>
-Date: Sat, 16 May 2020 16:29:47 -0400
+Date: Mon, 14 Sep 2020 22:55:33 +0000
 Subject: [PATCH] Workaround openshift status type
 
 ---
- .../src/Dhall/Kubernetes/Convert.hs                  | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ dhall-openapi/src/Dhall/Kubernetes/Convert.hs | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/dhall-kubernetes-generator/src/Dhall/Kubernetes/Convert.hs b/dhall-kubernetes-generator/src/Dhall/Kubernetes/Convert.hs
-index 077ebc3..d934f70 100644
---- a/dhall-kubernetes-generator/src/Dhall/Kubernetes/Convert.hs
-+++ b/dhall-kubernetes-generator/src/Dhall/Kubernetes/Convert.hs
-@@ -60,6 +60,18 @@ requiredFields maybeName required
-         , Set.fromList [FieldName "apiVersion"])
-       , ( ModelName "io.k8s.apimachinery.pkg.apis.meta.v1.StatusDetails"
-         , Set.fromList [FieldName "kind"])
-+      , ( ModelName "com.github.openshift.api.build.v1.BuildConfig"
-+        , Set.fromList [FieldName "status"])
-+      , ( ModelName "com.github.openshift.api.image.v1.ImageImportStatus"
-+        , Set.fromList [FieldName "status"])
-+      , ( ModelName "com.github.openshift.api.image.v1.ImageStreamImport"
-+        , Set.fromList [FieldName "status"])
-+      , ( ModelName "com.github.openshift.api.quota.v1.ResourceQuotaStatusByNamespace"
-+        , Set.fromList [FieldName "status"])
-+      , ( ModelName "com.github.openshift.api.route.v1.Route"
-+        , Set.fromList [FieldName "status"])
-+      , ( ModelName "com.github.openshift.api.template.v1.TemplateInstance"
-+        , Set.fromList [FieldName "status"])
-       ]
+diff --git a/dhall-openapi/src/Dhall/Kubernetes/Convert.hs b/dhall-openapi/src/Dhall/Kubernetes/Convert.hs
+index 2148e0e3..d7acf77f 100644
+--- a/dhall-openapi/src/Dhall/Kubernetes/Convert.hs
++++ b/dhall-openapi/src/Dhall/Kubernetes/Convert.hs
+@@ -55,7 +55,7 @@ requiredFields maybeName required
 
+     -- | Some models should not require some keys, and this is not
+     --   in the Swagger spec but just in the docs
+-    notRequiredConstraints = Data.Map.fromList
++    notRequiredConstraints = Data.Map.fromList (
+       [ ( ModelName "io.k8s.api.core.v1.ObjectFieldSelector"
+         , Set.fromList [ FieldName "apiVersion" ]
+         )
+@@ -65,8 +65,14 @@ requiredFields maybeName required
+       , ( ModelName "io.k8s.api.core.v1.PersistentVolumeClaim"
+         , Set.fromList [ FieldName "apiVersion", FieldName "kind" ]
+         )
+-      ]
+-
++      ] <> map (\name -> (ModelName name, Set.fromList [FieldName "status"]))
++      [ "com.github.openshift.api.build.v1.BuildConfig"
++      , "com.github.openshift.api.image.v1.ImageImportStatus"
++      , "com.github.openshift.api.image.v1.ImageStreamImport"
++      , "com.github.openshift.api.quota.v1.ResourceQuotaStatusByNamespace"
++      , "com.github.openshift.api.route.v1.Route"
++      , "com.github.openshift.api.template.v1.TemplateInstance"
++      ])
 
+ -- | Get a filename from a Swagger ref
+ pathFromRef :: Ref -> Text
 --
-2.26.2
+2.25.2
 EOF
+$ cabal build dhall-openapi
+[...]
+Linking /path/to/openapi-to-dhall ...
 ```
 
-Then build and generate binding:
+Download the openapi spec using a cluster `/openapi/v2` endpoint, or grab a
+[published api](https://github.com/openshift/origin/blob/e29bf7e007b976f624d1f24bc320583d4d335b83/api/swagger-spec/openshift-openapi-spec.json)
+
+Update the dhall schema:
 
 ```shell
-$ nix-shell
-$ runhaskell Setup.hs configure
-Configuring dhall-kubernetes-generator-0.1.0.0...
-$ runhaskell Setup.hs build
-Preprocessing executable 'dhall-kubernetes-generator' for dhall-kubernetes-generator-0.1.0.0..
-Building executable 'dhall-kubernetes-generator' for dhall-kubernetes-generator-0.1.0.0..
-```
-
-Then generate the files by running:
-
-```shell
-$ ./dist/build/dhall-kubernetes-generator/dhall-kubernetes-generator openshift-openapi-spec.json
+$ /path/to/openapi-to-dhall openshift-openapi-spec.json
+[...]
+Writing file './package.dhall'
 ```
 
 And freeze import hash:
