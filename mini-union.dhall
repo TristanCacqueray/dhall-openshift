@@ -20,6 +20,10 @@
     ./types/io.k8s.api.core.v1.Container.dhall sha256:c2d62c79f10368ae923aeac4a07708c85b9a987ce3a5ec7a081e335d100b2ab1
 | ContainerPort :
     ./types/io.k8s.api.core.v1.ContainerPort.dhall sha256:4e77a1c7092e5ef28542406404e3f44234fa81dea270e09f468e79ba428a575c
+| EnvVar :
+    ./types/io.k8s.api.core.v1.EnvVar.dhall sha256:f65fc60c0ee435d1e9e9fb0023420d8286ff27b3a50aa520dbe6b0a22b266783
+| EnvVarSource :
+    ./types/io.k8s.api.core.v1.EnvVarSource.dhall sha256:1e75b5cf6e7babc3b4fe3c39de06ee0604186208454f414203140c9a8eb89b31
 | PodSpec :
     ./types/io.k8s.api.core.v1.PodSpec.dhall sha256:965e100192ee2006138ed8575efb7b89dd4d4f571da8d30bfd8d34b8a7a405d1
 | PodTemplateSpec :

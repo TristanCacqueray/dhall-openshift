@@ -22,6 +22,8 @@ Objects = [
   "ContainerPort",
   "Deployment",
   "DeploymentSpec",
+  "EnvVar",
+  "EnvVarSource",
   "LabelSelector",
   "ObjectMeta",
   "PodSpec",

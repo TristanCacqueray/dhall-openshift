@@ -1,7 +1,7 @@
 {- Use the mini-generate.py to update -}
-    ./mini-schemas.dhall sha256:f55e30475ff99e81c58ac3ccb31cc9f8aceeea9f93cf3f6d52397c2a7efee289
+    ./mini-schemas.dhall sha256:16404e30906404b5a253ba94cfe28f10dfb0e6408abcfb46c9836d0efd3cbf9f
 /\  { IntOrString =
         ./types/io.k8s.apimachinery.pkg.util.intstr.IntOrString.dhall sha256:04a91539533a52bf0bf114690cceee43b656915bd83c2731ce26ad31f516d47f
     , Resource =
-        ./mini-union.dhall sha256:ac1262d8cff2b582cb39e4a4043fd4bdd601774295485af4a4baf72931ff08f0
+        ./mini-union.dhall sha256:005f81362905218cf7e3974460b2d1739a551dd369cf22477fce53292e38b742
     }
