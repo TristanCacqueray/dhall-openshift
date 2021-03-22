@@ -24,6 +24,11 @@ Objects = [
   "DeploymentSpec",
   "EnvVar",
   "EnvVarSource",
+  "EmptyDirVolumeSource",
+  "SecretVolumeSource",
+  "PersistentVolumeClaim",
+  "PersistentVolumeClaimSpec",
+  "ResourceRequirements",
   "LabelSelector",
   "ObjectMeta",
   "PodSpec",
@@ -35,6 +40,11 @@ Objects = [
   "Service",
   "ServicePort",
   "ServiceSpec",
+  "StatefulSet",
+  "StatefulSetSpec",
+  "SecretKeySelector",
+  "SecurityContext",
+  "Secret",
   "TLSConfig",
   "Volume",
   "VolumeMount",
@@ -48,6 +58,7 @@ def minify(inp, out, wrap):
             mini_schemas.extend([line, schemas[idx + 1]])
     open(out, "w").write(wrap[0] + ("\n".join(mini_schemas)) + wrap[1])
     subprocess.Popen(["dhall", "--ascii", "format", "--inplace", out]).wait()
+    subprocess.Popen(["dhall", "--ascii", "freeze", "--all", "--inplace", out]).wait()
 minify("schemas.dhall", "mini-schemas.dhall", ("{", "}"))
 minify("typesUnion.dhall", "mini-union.dhall", ("<", ">"))
 subprocess.Popen(["dhall", "--ascii", "freeze", "--all", "--inplace", "mini-package.dhall"])

@@ -9,7 +9,7 @@
 , initializers :
     Optional ./io.k8s.apimachinery.pkg.apis.meta.v1.Initializers.dhall
 , labels : Optional (List { mapKey : Text, mapValue : Text })
-, name : Optional Text
+, name : Text
 , namespace : Optional Text
 , ownerReferences :
     Optional (List ./io.k8s.apimachinery.pkg.apis.meta.v1.OwnerReference.dhall)
